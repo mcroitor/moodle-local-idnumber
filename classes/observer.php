@@ -1,4 +1,5 @@
 <?php
+
 // This file is part of Moodle - https://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -14,7 +15,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 
-namespace local_uuid;
+namespace local_idnumber;
 
 /**
  * Event observer class.
@@ -25,24 +26,6 @@ namespace local_uuid;
  * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class observer {
-
-    /**
-     * Triggered via $event.
-     *
-     * @param \core\event\question_category_created $event The event.
-     * @return bool True on success.
-     */
-    public static function question_category_created($event) {
-        global $DB;
-        if(isset($event->objectid)) {
-            $DB->execute(
-                "UPDATE {question_categories} SET idnumber=:idnumber WHERE id=:id",
-                ["id" => $event->objectid, "idnumber" => \core\uuid::generate()]
-            );
-        }
-        return true;
-    }
-
     /**
      * Triggered via $event.
      *
@@ -51,12 +34,14 @@ class observer {
      */
     public static function question_created($event) {
         global $DB;
-        if(isset($event->objectid)) {
+        if (isset($event->objectid)) {
+            $idnumber = \local_idnumber\generator::get_question_idnumber($event->objectid);
             $DB->execute(
-                "UPDATE {question} SET idnumber=:idnumber WHERE id=:id",
-                ["id" => $event->objectid, "idnumber" => \core\uuid::generate()]
+                    "UPDATE {question} SET idnumber=:idnumber WHERE id=:id",
+                    ["id" => $event->objectid, "idnumber" => $idnumber]
             );
         }
         return true;
     }
+
 }

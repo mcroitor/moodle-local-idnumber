@@ -42,3 +42,16 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <https://www.gnu.org/licenses/>.
+
+## TODO
+
+ * keep idnumber template for each course
+ * UI is available from question bank menu
+ * generate UUID idnumber for question
+ * generate UUID idnumber for question category
+ * options for module: 
+   * select generator type;
+   * generate idnumbers for empty;
+   * regenerate all idnumbers
+ * implement idnumber generation, question type based
+ * generate idnumbers (for questions and question categories) when course is created or updated

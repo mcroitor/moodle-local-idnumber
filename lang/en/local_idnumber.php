@@ -26,3 +26,5 @@
 defined('MOODLE_INTERNAL') || die();
 
 $string['pluginname'] = 'idnumber generator';
+$string['useuuid'] = 'Use UUID for idnumber';
+$string['useuuid_desc'] = 'Use UUID for idnumber, otherwise idnumber will be based on question type.';

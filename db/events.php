@@ -28,12 +28,6 @@ defined('MOODLE_INTERNAL') || die();
 $observers = array(
 
     array(
-        'eventname' => '\core\event\question_category_created',
-        'callback' => '\local_uuid\observer::question_category_created',
-        'internal' => false,
-    ),
-
-    array(
         'eventname' => '\core\event\question_created',
         'callback' => '\local_uuid\observer::question_created',
         'internal' => false,

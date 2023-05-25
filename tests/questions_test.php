@@ -26,4 +26,10 @@ class local_idnumber_questions_testcase extends advanced_testcase {
 
     // Write the tests here as public funcions.
     // Please refer to {@link https://docs.moodle.org/dev/PHPUnit} for more details on PHPUnit tests in Moodle.
+    
+    public function test_generator_uuid(){
+        echo \local_idnumber\generator::uuid(1);
+        
+        $this->assert(true);
+    }
 }

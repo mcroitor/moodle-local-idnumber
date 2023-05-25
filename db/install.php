@@ -30,7 +30,8 @@ defined('MOODLE_INTERNAL') || die();
  */
 function xmldb_local_idnumber_install() {
     global $DB;
-    $DB->execute("UPDATE {question_categories} SET idnumber=UUID()  WHERE idnumber IS NULL");
-    $DB->execute("UPDATE {question} SET idnumber=UUID()  WHERE idnumber IS NULL");
+//    $idnumber_generator = new \local_uuid\idnumber_generator();
+//    $idnumber = $idnumber_generator->generate();
+//    $DB->execute("UPDATE {question} SET idnumber={$idnumber}  WHERE idnumber IS NULL");
     return true;
 }
