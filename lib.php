@@ -24,6 +24,13 @@
  */
 
 
+// Function to extend the course navigation
+function local_idnumber_extend_navigation_course($navigation, $course, $context) {
+    // Add "idnumber" to the "Question bank" menu
+    $url = new \moodle_url('/course/modedit.php', ['add' => 'question', 'course' => $course->id]);
+    $navigation->add(get_string('idnumber', 'local_idnumber'), $url, navigation_node::TYPE_CUSTOM, null, 'idnumber');
+}
+ 
 function local_idnumber_generate_idnumber_for_question($id) {
     global $DB;
     $idnumber = \local_idnumber\generator::get_question_idnumber($id);
