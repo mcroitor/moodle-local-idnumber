@@ -4,6 +4,29 @@ The plugin _idnumber generator_ generates idnumbers for different usages.
 
 At the moment plugin provides idnumbers for questions and question categories.
 
+Plugin creates a new submenu link in the question bank menu.
+
+This submenu propose acces to the form, that allows:
+
+ - to define idnumber template for course
+ - to generate (missing) idnumbers
+ - to regenerate all idnumbers
+
+## template definition
+
+Template supports the next patterns:
+
+ * `uuid` - unique identifier`
+ * `category` - category order number in parent category
+ * `number` - question order number
+ * `type` - type of question
+ * `point` - question points
+
+Examples of tempaltes:
+
+ * `[uuid]`
+ * `c[category]t[type]p[point][number]`
+
 ## Installing via uploaded ZIP file ##
 
 1. Log in to your Moodle site as an admin and go to _Site administration >
