@@ -27,21 +27,20 @@
 // Function to extend the course navigation
 function local_idnumber_extend_navigation_course($navigation, $course, $context) {
     // Add "idnumber" to the "Question bank" menu
-    $url = new \moodle_url('/course/modedit.php', ['add' => 'question', 'course' => $course->id]);
-    $navigation->add(get_string('idnumber', 'local_idnumber'), $url, navigation_node::TYPE_CUSTOM, null, 'idnumber');
-}
- 
-function local_idnumber_generate_idnumber_for_question($id) {
-    global $DB;
-    $idnumber = \local_idnumber\generator::get_question_idnumber($id);
-    $DB->set_field("question", "idnumber", $idnumber, ["id" => $id]);
-}
-
-
-function local_idnumber_generate_missing_idnumbers() {
-    global $DB;
-    $ids = $DB->get_fieldset_select("question", "id", "idnumber IS NULL");
-    foreach($ids as $question_id){
-        local_idnumber_generate_idnumber_for_question($question_id);
+    $questionbank = $navigation->find("questionbank", navigation_node::TYPE_ACTIVITY);
+    if ($questionbank) {
+        $questionbank->add(
+            get_string("idnumber", "local_idnumber"),
+            new moodle_url("/local/idnumber/form.php", ["courseid" => $course->id]),
+            navigation_node::TYPE_SETTING
+        );
     }
 }
+ 
+function local_idnumber_generate_idnumbers($course_id) {
+    global $DB;
+    $template = $DB->get_field("local_idnumber", "template", ["course" => $course_id]);
+    // get the question bank
+
+}
+
